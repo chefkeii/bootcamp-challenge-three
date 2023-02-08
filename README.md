@@ -1,5 +1,6 @@
-# bootcamp-challenge-three
-Module 3 Java Script
+# bootcamp-challenge-three-JavaScript Challenge: Password Generator
+Module 3 Java Script- 
+
 User Story
 AS AN employee with access to sensitive data
 I WANT to randomly generate a password that meets certain criteria
