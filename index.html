@@ -1,40 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <style>
-    .container {
-      display:flex;
-      flex-direction: column;
-      align-items: center;
-      margin: top 50px;
-    }
-
-    h1{
-      font-size: 2em;
-      margin-bottom: 30px;
-    }
-
-    form{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: lightgray;
-      padding: 30px;
-      border-radius: 10px;
-    }
-
-    label{
-      margin-bottom: 10px;
-    }
-
-    
-  </style>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Password Strength Checker</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Password Strength Checker</h1>
+      </header>
+      <div class="card">
+        <div class="card-header">
+          <h2>Password Strength</h2>
+        </div>
+        <div class="card-body">
+          <textarea id="password" placeholder="Enter a password"></textarea>
+          <p id="password-strength"></p>
+        </div>
+        <div class="card-footer">
+          <button id="check-password" class="btn">Check</button>
+          <p id="last-checked" class="float-right"></p>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
 </html>

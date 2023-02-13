@@ -1,48 +1,50 @@
-const generateBtn = document.getElementById("generate");
-const passwordText = document.getElementById("password");
+function generatePassword() {
+  // Prompt the user for password length
+  let passwordLength = prompt("Please enter the desired length of your password (8-128 characters):");
+  passwordLength = parseInt(passwordLength);
 
-generateBtn.addEventListener("click", function() {
-  const length = parseInt(
-    prompt("How long would you like your password to be? (minimum 8, maximum 128)")
-  );
-  if (length < 8 || length > 128) {
-    return alert("Password length must be between 8 and 128 characters.");
+  // Validate password length
+  if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+    return "Invalid password length. Please enter a number between 8 and 128.";
   }
 
-  const hasLowercase = confirm("Would you like to include lowercase characters?");
-  const hasUppercase = confirm("Would you like to include uppercase characters?");
-  const hasNumeric = confirm("Would you like to include numeric characters?");
-  const hasSpecial = confirm("Would you like to include special characters?");
+  // Prompt the user for character types
+  let includeLowercase = confirm("Include lowercase characters?");
+  let includeUppercase = confirm("Include uppercase characters?");
+  let includeNumeric = confirm("Include numeric characters?");
+  let includeSpecial = confirm("Include special characters?");
 
-  if (!hasLowercase && !hasUppercase && !hasNumeric && !hasSpecial) {
-    return alert("At least one character type must be selected.");
+  // Validate character type selection
+  if (!includeLowercase && !includeUppercase && !includeNumeric && !includeSpecial) {
+    return "You must select at least one character type.";
   }
 
+  // Store possible characters in arrays
+  let lowercase = "abcdefghijklmnopqrstuvwxyz";
+  let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let numeric = "0123456789";
+  let special = "!@#$%^&*()_+-=[]{}|;':\"<>,.?/\\";
+
+  // Determine characters to choose from
+  let characters = "";
+  if (includeLowercase) characters += lowercase;
+  if (includeUppercase) characters += uppercase;
+  if (includeNumeric) characters += numeric;
+  if (includeSpecial) characters += special;
+
+  // Generate password
   let password = "";
-  const characters = {
-    lowercase: "abcdefghijklmnopqrstuvwxyz",
-    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    numeric: "0123456789",
-    special: "!@#$%^&*()_+-=[]{}|;':\"<>,.?/\\`~"
-  };
-
-  for (let i = 0; i < length; i++) {
-    const type = randomType();
-    password += randomChar(characters[type]);
+  for (let i = 0; i < passwordLength; i++) {
+    let randomIndex = Math.floor(Math.random() * characters.length);
+    password += characters.charAt(randomIndex);
   }
 
-  passwordText.value = password;
-});
-
-function randomType() {
-  const types = [];
-  if (hasLowercase) types.push("lowercase");
-  if (hasUppercase) types.push("uppercase");
-  if (hasNumeric) types.push("numeric");
-  if (hasSpecial) types.push("special");
-  return types[Math.floor(Math.random() * types.length)];
+  // Return password
+  return password;
 }
 
-function randomChar(str) {
-  return str.charAt(Math.floor(Math.random() * str.length));
+function writePassword() {
+  let password = generatePassword();
+  let passwordText = document.querySelector("#password");
+  passwordText.value = password;
 }
